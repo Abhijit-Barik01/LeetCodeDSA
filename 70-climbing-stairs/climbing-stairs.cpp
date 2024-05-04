@@ -1,8 +1,10 @@
-vector<int>dp(46, -1);
+
 class Solution {
 
 public:
-   
+     vector<int>dp;
+     Solution(): dp(46,-1){}
+
     int climbStairs(int n) {
         
 
