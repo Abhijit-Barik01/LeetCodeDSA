@@ -4,25 +4,19 @@ int dp[1001][1001];
 int n;
 int lis(vector<vector<int>>& pairs, int curr, int prev)
 {
-    if(curr >= n)
-    return 0;
-
-    if(prev!=-1 && dp[curr][prev]!=-1)
-    {
+    if(curr >= n )
+        return 0;
+     if( prev != -1 && dp[curr][prev] != -1)
         return dp[curr][prev];
-    }
-    int taken = 0;
-
-    if(prev == -1 || pairs[curr][0] > pairs[prev][1])
+    int taken=0;
+    if (prev == -1 || pairs[curr][0] > pairs[prev][1] ) 
     {
-        taken = 1+ lis(pairs, curr+1,curr);
+         taken =1+lis(pairs,curr+1,curr);
     }
-
-    int nottaken = lis(pairs, curr+1,prev);
-
-    if(prev!=-1)
+    int nottaken =lis(pairs,curr+1,prev);
+    if(prev != -1)
     {
-        dp[curr][prev] = max(taken,nottaken);
+        dp[curr][prev]=max(taken,nottaken);
     }
     return max(taken,nottaken);
 }
