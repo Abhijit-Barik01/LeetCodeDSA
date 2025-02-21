@@ -11,20 +11,36 @@
  */
 class FindElements {
 public:
-    unordered_set<int>st;
-    void dfs(TreeNode* root,int x)
-    {
+     unordered_set<int>st;
+     void dfs(TreeNode* root,int x )
+     {
+        queue<TreeNode*>q;
+        root->val =x;
+        q.push(root);
 
-        if(root == nullptr)
-            return ;
-        root->val= x;
-        st.insert(x);
-        dfs(root->left,2*x+1);
-        dfs(root->right,2*x+2);
-    }
+        while(!q.empty())
+        {
+           TreeNode* temp = q.front();
+           q.pop();
+           st.insert(temp->val);
+
+           if(temp->left)
+           {
+             temp->left->val = 2*temp->val +1;
+             q.push(temp->left);
+           }
+
+           if(temp->right)
+           {
+             temp->right->val = 2*temp->val+2;
+             q.push(temp->right);
+           }
+        }
+
+      
+     }
     FindElements(TreeNode* root) {
-      dfs(root,0);
-
+        dfs(root,0);
     }
     
     bool find(int target) {
