@@ -1,7 +1,7 @@
 class Solution {
 public:
     int hIndex(vector<int>& citations) {
-        int maxHindex = INT_MIN;
+        int maxHindex = INT_MIN;  //design by me
         int n =citations.size();
         for(int  index = 0 ; index <=n ; index++ )
         {  int count =0;
