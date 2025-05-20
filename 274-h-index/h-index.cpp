@@ -1,25 +1,21 @@
 class Solution {
 public:
     int hIndex(vector<int>& citations) {
-        int maxHindex = INT_MIN;  //design by me
-        int n =citations.size();
-        for(int  index = 0 ; index <=n ; index++ )
-        {  int count =0;
-            for(int j =0 ; j <n ; j++ )
-            {
-                if(index <= citations[j])
-                {
-                    count++;
-                }
-                
-            }
-            if(count >= index)
-            {
-                maxHindex = max(maxHindex,index);
-            }
-            
-            
+
+        sort(citations.begin(),citations.end(),greater<int>());
+
+        int i =0 , hmax =0 ;
+        while( i < citations.size())
+        {
+            if(citations[i] >= i+1)
+                hmax = i+1;
+            else
+                break;
+
+            i++;
+
         }
-        return maxHindex;
+
+       return hmax; 
     }
 };
