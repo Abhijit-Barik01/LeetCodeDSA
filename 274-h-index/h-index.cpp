@@ -3,19 +3,19 @@ public:
     int hIndex(vector<int>& citations) {
         int maxHindex = INT_MIN;
         int n =citations.size();
-        for(int  i = 0 ; i <=n ; i++ )
+        for(int  index = 0 ; index <=n ; index++ )
         {  int count =0;
             for(int j =0 ; j <n ; j++ )
             {
-                if(i <= citations[j])
+                if(index <= citations[j])
                 {
                     count++;
                 }
                 
             }
-            if(count >= i)
+            if(count >= index)
             {
-                maxHindex = max(maxHindex,i);
+                maxHindex = max(maxHindex,index);
             }
             
             
