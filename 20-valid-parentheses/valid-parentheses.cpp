@@ -1,34 +1,41 @@
 class Solution {
 public:
-    
-    bool matching(char a, char b){
-        return ((a=='(' && b==')' )  ||(a=='{' && b=='}') ||( a=='[' && b==']') );
-    }
-    
-    bool isValid(string s) {
-        stack<char>s1;
-        for(char x:s)
+    bool valid(char s,stack<char>&st )
+    {
+        char s1= st.top();
+
+        if ((s1=='(' && s==')') || (s1=='[' && s==']') || (s1=='{' && s=='}') )
         {
-            if(x=='('||x=='{'||x=='[')
+            return true;
+        }
+         
+            return false;
+    }
+    bool isValid(string s) {
+        stack<char>st;
+
+        for(int i =0; i< s.size(); i++)
+        {
+            if(  s[i] == '(' || s[i] == '{' || s[i] =='[' || st.empty())
             {
-                s1.push(x);
-                
+                st.push(s[i]);
             }
-            
-        else 
+            else
             {
-                
-                
-                if(s1.empty()==true) //when input')'
-                     return false;
-                     
-                if(matching(s1.top(),x)==false)
-                    return false;
+                if(valid(s[i],st))
+                {
+                    st.pop();
+                }
                 else
-                    s1.pop();
-                
+                {
+                    st.push(s[i]);
+                }
             }
         }
-        return(s1.empty()==true);
+
+        if (st.empty())
+            return true;
+    return false;
+        
     }
 };
